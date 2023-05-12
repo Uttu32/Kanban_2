@@ -1,0 +1,44 @@
+.Mnav_background{
+    width: 100%;
+    padding: 10px 20px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Mnav_background p{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+.Mnav_background p:hover{
+    background-color: rgb(178, 178, 178);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+.Mnav_leftDiv{
+    display: flex;
+    align-items: center;
+}
+
+.Mnav_leftDiv > div{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+.Mnav_leftDiv > div:hover{
+    background-color: rgb(178, 178, 178);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.Mnav_leftDiv > div > img{
+    height: 20px;
+    width: 20px;
+}

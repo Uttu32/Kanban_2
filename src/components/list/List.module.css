@@ -1,0 +1,98 @@
+.mainCard{
+    margin: 10px;
+    width: 15rem;
+    min-height: 4rem;
+    height: fit-content;
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #F1F2F4;
+}
+
+.Upper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ListName{
+    background-color: #F1F2F4;
+    border: none;
+    width: 11.5rem;
+    padding: 5px;
+}
+
+.ListName:focus{
+    background-color: white;
+    border:2px solid #3390FF;
+    border-radius: 5px;
+    outline: none;  
+}
+
+.Addbtn{
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.addButton{
+    border: none;
+    text-align: start;
+    background-color: #F1F2F4;
+    width: 13rem;
+    border-radius: 10px;
+    margin-left: -6px;    
+    padding: 5px;
+    color: grey;
+    cursor: pointer;
+}
+
+.addButton:hover{
+    background-color: #a6a6a6a1;
+
+}
+
+.buttonclose{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.buttonclose>button{
+    
+    display: inline-block;
+    outline: none;
+    border-width: 0px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-weight: 500;
+    max-width: 100%;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
+    background: rgb(0, 82, 204);
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 12px;
+    vertical-align: middle;
+    width: auto;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+
+
+}
+
+.buttonclose>button:hover {
+    background: rgb(0, 101, 255);
+    text-decoration: inherit;
+    transition-duration: 0s, 0.15s;
+    color: rgb(255, 255, 255);
+}
+
+.toggle{    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+

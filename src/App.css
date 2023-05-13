@@ -8,3 +8,12 @@
     display: flex;
     background-size: cover;
 }
+
+.mainContent{
+    display: flex;
+    flex-direction: column;
+}
+
+.inner{
+    display: flex;
+}

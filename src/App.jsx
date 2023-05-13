@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import MainNavbar from "./components/MainNavbar/MainNavbar";
 import List from "./components/list/List";
 import Sidebar from "./components/sidebar/Sidebar";
+import AddCard from "./components/AddCard/AddCard";
 
 function App() {
   return (
@@ -16,9 +17,12 @@ function App() {
         <Sidebar />
         
         
-        <div>
+        <div className="mainContent">
           <Navbar />
-          <List />
+          <div className="inner">
+            <List />
+            <AddCard />
+          </div>
         </div>
       </div>
 

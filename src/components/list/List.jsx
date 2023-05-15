@@ -62,22 +62,24 @@ const List = () => {
                 </p>
               )}
             </div>
+            {console.log(ele)}
+            <Task id={ele.id} Lname={ele.listName} task={ele.task}/>
             {addItem ? (
               <div className={Styles.main}>
-                <Task id={ele.id} Lname={ele.listName} task={ele.task}/>
+                
                 <div className={Styles.toggle}>
                   <div className={Styles.buttonclose}>
                     <button>Add Card</button>
                     <CloseIcon onClick={handleAddButton} />
                   </div>
                   <div style={{ cursor: "pointer" }}>
-                    <MoreHorizIcon fontSize="large" color="disabled" />
+                    <MoreHorizIcon fontSize="large" />
                   </div>
                 </div>
               </div>
             ) : (
               <div className={Styles.Addbtn}>
-                <div>
+                <div >
                   <button
                     onClick={handleAddButton}
                     className={Styles.addButton}

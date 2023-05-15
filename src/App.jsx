@@ -14,7 +14,7 @@ function App() {
     //   <Task />
     // </div>
     <div>
-      {/* <MainNavbar />
+      <MainNavbar />
 
       <div className="Main_Background">
 
@@ -29,7 +29,7 @@ function App() {
             <AddCard />
           </div>
         </div>
-      </div> */}
+      </div>
 
       <ItemBox />
     </div>

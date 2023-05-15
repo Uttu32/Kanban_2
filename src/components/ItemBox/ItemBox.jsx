@@ -72,7 +72,9 @@ export default function ItemBox() {
 
                             {
                                 showDetails && 
-                                    <div></div>
+                                    <div>
+                                        {/* map function will run here  */}
+                                    </div>
                             }
                         </div>
                     </div>

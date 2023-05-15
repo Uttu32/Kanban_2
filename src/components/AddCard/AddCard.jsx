@@ -24,7 +24,7 @@ const AddCard = () => {
         listName: listName,
         task: [],
       };
-      setListName("")
+      setListName("");
       setListData([...listData, temporary]);
     }
   }

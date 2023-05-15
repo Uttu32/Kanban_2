@@ -13,7 +13,9 @@ function App() {
     //   <Task />
     // </div>
     <div>
-      <MainNavbar />
+      <div className="MainNav">
+        <MainNavbar />
+      </div>
 
       <div className="Main_Background">
         

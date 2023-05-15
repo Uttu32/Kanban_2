@@ -40,3 +40,19 @@
     width:80%;
     border: 1px solid;
 }
+
+.List{
+  /* border: 1px solid; */
+  height: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.List>p{
+  width: 80%;
+}
+
+.List>p:hover{
+  width: 80%;
+  background-color: rgb(108, 65, 65);
+}

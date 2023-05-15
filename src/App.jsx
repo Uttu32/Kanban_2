@@ -5,7 +5,8 @@ import MainNavbar from "./components/MainNavbar/MainNavbar";
 import List from "./components/list/List";
 import Sidebar from "./components/sidebar/Sidebar";
 import AddCard from "./components/AddCard/AddCard";
-// import Task from "./components/Task!/Task";
+import ItemBox from "./components/ItemBox/ItemBox";
+
 
 function App() {
   return (
@@ -13,16 +14,14 @@ function App() {
     //   <Task />
     // </div>
     <div>
-      <div className="MainNav">
-        <MainNavbar />
-      </div>
+      <MainNavbar />
 
       <div className="Main_Background">
-        
-        
+
+
         <Sidebar />
-        
-        
+
+
         <div className="mainContent">
           <Navbar />
           <div className="inner">
@@ -32,7 +31,7 @@ function App() {
         </div>
       </div>
 
-      
+      <ItemBox />
     </div>
   );
 }

@@ -22,7 +22,7 @@ const AddCard = () => {
       const temporary = {
         id: Id,
         listName: listName,
-        task: [],
+        task: [],        
       };
       setListName("");
       setListData([...listData, temporary]);

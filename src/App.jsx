@@ -5,9 +5,13 @@ import MainNavbar from "./components/MainNavbar/MainNavbar";
 import List from "./components/list/List";
 import Sidebar from "./components/sidebar/Sidebar";
 import AddCard from "./components/AddCard/AddCard";
+// import Task from "./components/Task!/Task";
 
 function App() {
   return (
+    // <div>
+    //   <Task />
+    // </div>
     <div>
       <MainNavbar />
 

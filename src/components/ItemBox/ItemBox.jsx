@@ -14,20 +14,23 @@ import { ListData } from '../../Recoil/Atom/atom';
 
 export default function ItemBox() {
 
+    console.log("I am Item Box");
+
     const [showDescription, setShowDescription] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
-    const [description, setDescription] = useState('')
+    const [Description, setDescription] = useState('Add a more detailed description...')
 
     const [currentCardTitle, setCurrentCardTitle] = useState('')
     const [currentTaskTitle, setCurrentTaskTitle] = useState('')
 
     const navigate = useNavigate()
-    const { Cid, Lid } = useParams()
+    const { Cid, Lid } = useParams();
 
     const [listData, setListData] = useRecoilState(ListData)
 
     useEffect(()=> {
         let input = [...listData]
+        console.log(input);
         let index = input.findIndex( (ele)=> ele.id === Cid )
 
         let currentCard = {...input[index]}
@@ -40,12 +43,23 @@ export default function ItemBox() {
         let taskindex = Task.findIndex((ele)=> ele.id === Lid)
         // console.log(Task[taskindex]);
 
-        let currentTask = Task[taskindex]
-        setCurrentTaskTitle(currentTask.title)
+        let currentTask = Task[taskindex];
+
+        setCurrentTaskTitle(currentTask)
+        console.log(currentTask);
 
     } , [])
-    
-    // console.log(Cid, Lid)
+
+    function handleDescription(){
+        let input = {...currentTaskTitle}
+        input.description = Description;
+        console.log(Description);
+        console.log(input, "global");
+        // setListData(input);
+        setShowDescription(false);
+    }
+
+
 
     return (
         <div className='Ibox_mainBackground'>
@@ -57,7 +71,7 @@ export default function ItemBox() {
                             <CreditCardIcon />
                         </div>
                         <div className='Ibox_contentPart'>
-                            <h3>{currentTaskTitle}</h3>
+                            <h3>{currentTaskTitle.title}</h3>
                             <p>in List {currentCardTitle}</p>
                             <br />
                             <h5>Notifications</h5>
@@ -74,12 +88,18 @@ export default function ItemBox() {
                     <div className="Ibox_contentPart">
                         <h4>Description</h4>
                         <div className='description_box'>
+                            {Description}
                             {
                                 !showDescription ?
-                                    <p onClick={() => setShowDescription(true)}><span>Add a more detailed description...</span></p> :
+                                    <p onClick={() => setShowDescription(true)}>{currentTaskTitle.description}</p> :
                                     <>
-                                        <ReactQuill theme="snow" value={description} onChange={setDescription} />
-                                        <button className='btn' style={{ backgroundColor: 'blue', color: 'white' }}>Save</button>
+                                        <ReactQuill theme="snow" value={Description}  onChange={(value)=> 
+                                        {console.log(value, "Point")
+                                        setDescription(value)}
+                                        } />
+                                        <button className='btn' 
+                                        onClick={handleDescription}
+                                        style={{ backgroundColor: 'blue', color: 'white' }}>Save</button>
                                         <button className='btn' onClick={() => setShowDescription(false)}>Cancel</button>
                                     </>
                             }

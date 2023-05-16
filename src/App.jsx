@@ -7,10 +7,14 @@ import Sidebar from "./components/sidebar/Sidebar";
 import AddCard from "./components/AddCard/AddCard";
 import ItemBox from "./components/ItemBox/ItemBox";
 
+
 function App() {
   return (
+    // <div>
+    //   <Task />
+    // </div>
     <div>
-      {/* <MainNavbar />
+      <MainNavbar />
 
       <div className="Main_Background">
 
@@ -25,7 +29,7 @@ function App() {
             <AddCard />
           </div>
         </div>
-      </div> */}
+      </div>
 
       <ItemBox />
     </div>

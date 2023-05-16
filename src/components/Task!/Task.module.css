@@ -1,0 +1,139 @@
+.Main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Main>button{
+    height: 2px;
+    background: none;
+  border: none;
+  
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 12px;
+  height: 20px;
+  padding: 0px 10px;
+  text-shadow: rgb(0 0 0 / 25%) 0px 3px 8px;
+  background: linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%);
+  transition: all 0.5s ease 0s;  
+}
+
+.Main>button:hover{
+    box-shadow: rgb(80 63 205 / 50%) 0px 1px 40px;
+    transition: all 0.1s ease 0s;
+  }
+
+.Toggled{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.Toggled>h4{
+    width:80%;
+    border: 1px solid;
+}
+
+.TaskBoundary{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  /* border: 1px solid rebeccapurple; */
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.List{
+  /* border: 1px solid ; */
+  height: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.List>p{
+  width: 80%;
+}
+
+.List:hover{
+  background-color: whitesmoke;
+}
+
+.toggle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttonclose{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.buttonclose>button{
+  
+  display: inline-block;
+  outline: none;
+  border-width: 0px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-weight: 500;
+  max-width: 100%;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
+  background: rgb(0, 82, 204);
+  cursor: pointer;
+  height: 32px;
+  line-height: 32px;
+  padding: 0px 12px;
+  vertical-align: middle;
+  width: auto;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+}
+
+.buttonclose>button:hover {
+  background: rgb(0, 101, 255);
+  text-decoration: inherit;
+  transition-duration: 0s, 0.15s;
+  color: rgb(255, 255, 255);
+}
+
+.Addbtn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+.addButton{
+  border: none;
+  text-align: start;
+  background-color: #F1F2F4;
+  width: 13rem;
+  border-radius: 10px;
+  margin-left: -6px;    
+  padding: 5px;
+  color: grey;
+  cursor: pointer;
+}
+
+.addButton:hover{
+  background-color: #a6a6a6a1;
+
+}

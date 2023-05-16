@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import './ItemBox.css'
-
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
 import CloseIcon from '@mui/icons-material/Close';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';

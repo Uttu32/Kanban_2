@@ -7,6 +7,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
+import ListEdit from "../ListEdit/ListEdit";
 import RollerShadesClosedOutlinedIcon from "@mui/icons-material/RollerShadesClosedOutlined";
 import uuid from "react-uuid";
 
@@ -14,6 +16,7 @@ const Task = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
 
   let Id = props.id;
   let listName = props.Lname;
@@ -41,28 +44,16 @@ const Task = (props) => {
     }
   }
 
-  function handleDelete(IdList){
-    // let List = [...listData];
-    // let index = List.findIndex((e) => e.id=== Id );
-    // let Taskss = List[index].task
-    // let Input =[...Taskss];
-    // Input = Input.filter((e) => e.id !== IdList);
-    // List[index].task = Input;
-    // setListData(List)
-    // console.log(listData)
-
-    let updateList = [...listData];
-    const index = updateList.findIndex((ele) => ele.id == Id);
-    let currentList = { ...updateList[index] };
-    const updatedTasks = currentList.task.filter(
-      (ele) => ele.id != IdList
-    );
-    currentList.task = updatedTasks;
-    updateList[index] = currentList;
-    setListData(updateList);
-    console.log(listData);
-
-  }
+  // function handleDelete(IdList) {
+  //   let updateList = [...listData];
+  //   const index = updateList.findIndex((ele) => ele.id == Id);
+  //   let currentList = { ...updateList[index] };
+  //   const updatedTasks = currentList.task.filter((ele) => ele.id != IdList);
+  //   currentList.task = updatedTasks;
+  //   updateList[index] = currentList;
+  //   setListData(updateList);
+  //   console.log(listData);
+  // }
 
   function handleChange(e) {
     setTitle(e.target.value);
@@ -72,16 +63,23 @@ const Task = (props) => {
     setAddItem(!addItem);
   }
 
+  // function handleEdit(ID) {
+  //   let input = [...listData];
+  //   let index = input.findIndex((ele) => ele.id === Id);
+  //   let current = input[index];
+  //   let taskss = { ...current };
+  //   let Task = [...taskss.task];
+  //   let taskIndex = Task.findIndex((ele) => ele.id === ID);
+  //   console.log(Task[taskIndex]);
+  // }
+
   return (
     <div>
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
           ? task.map((e) => (
               <div className={Styles.List}>
-                <p>{e.title}</p>
-                <span>
-                  <DeleteIcon onClick={()=>handleDelete(e.id)}/>
-                </span>
+                <ListEdit title={e.title} id={e.id} cardId={Id}/>
               </div>
             ))
           : null}

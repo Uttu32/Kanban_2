@@ -1,0 +1,13 @@
+.Main{
+    display: flex;
+    align-items: center;
+}
+.Main>div{
+    width:12rem;
+    height: 1.4rem;
+
+}
+
+.Main>span{
+    display: flex;
+}

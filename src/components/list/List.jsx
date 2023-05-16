@@ -43,6 +43,7 @@ const List = () => {
                   <DeleteIcon
                     onClick={() => handleDelete(ele.id)}
                     fontSize="small"
+                    
                   />
                 </form>
               ) : (

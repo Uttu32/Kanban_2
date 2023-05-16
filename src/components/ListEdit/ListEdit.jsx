@@ -4,6 +4,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { ListData } from "../../Recoil/Atom/atom";
 import Styles from "./ListEdit.module.css";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
+
 
 const ListEdit = (props) => {
   let Title = props.title;
@@ -13,6 +15,7 @@ const ListEdit = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [isInput, setIsInput] = useState(false);
   const [title, setTitle] = useState(Title);
+  const navigate = useNavigate();
 
   function handleDelete() {
     let updateList = [...listData];
@@ -44,6 +47,10 @@ const ListEdit = (props) => {
     setIsInput(!isInput);    
   }
 
+  function handleNavigate(){
+    navigate(`/${CardId}/${ListId}/edit`)
+  }
+
   return (
     <div className={Styles.Main}>
       <div>
@@ -56,7 +63,7 @@ const ListEdit = (props) => {
             />
           </form>
         ) : (
-          <p>{Title}</p>
+          <p onClick={ handleNavigate } >{Title}</p>
         )}
       </div>
       <span>

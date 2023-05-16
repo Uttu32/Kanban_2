@@ -30,7 +30,7 @@ const List = () => {
     <div style={{ display: "flex" }}>
       {listData.map((ele) => {
         return (
-          <div className={Styles.mainCard}>
+          <div className={Styles.mainCard} key={ele.id}>
             <div className={Styles.Upper}>
               {inputVisible ? (
                 <form onSubmit={() => setInputVisible(false)}>

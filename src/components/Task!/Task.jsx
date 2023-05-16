@@ -78,7 +78,7 @@ const Task = (props) => {
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
           ? task.map((e) => (
-              <div className={Styles.List}>
+              <div className={Styles.List} key={e.id}>
                 <ListEdit title={e.title} id={e.id} cardId={Id}/>
               </div>
             ))

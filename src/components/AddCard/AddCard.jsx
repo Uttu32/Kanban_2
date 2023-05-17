@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import React, { useState } from "react";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import Styles from "./Addcard.module.css";
 import { ListData } from "../../Recoil/Atom/atom";
@@ -19,11 +19,13 @@ const AddCard = () => {
     let Lname = listName.trim();
     if (Lname !== "") {
       let Id = uuid();
+
       const temporary = {
         id: Id,
         listName: listName,
         task: [],        
       };
+      
       setListName("");
       setListData([...listData, temporary]);
     }

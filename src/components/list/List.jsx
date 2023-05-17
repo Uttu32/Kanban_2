@@ -6,7 +6,6 @@ import { ListData } from "../../Recoil/Atom/atom";
 import { useRecoilState } from "recoil";
 
 const List = () => {
-  const [addItem, setAddItem] = useState(false);
   const [listData, setListData] = useRecoilState(ListData);
   const [inputVisible, setInputVisible] = useState(false);
 

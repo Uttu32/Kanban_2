@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './ItemBox.css'
+import TextField from "@mui/material/TextField";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import CloseIcon from '@mui/icons-material/Close';
@@ -111,8 +112,8 @@ export default function ItemBox() {
                                     </div>
                                     :
                                     <>
-                                        <ReactQuill theme="snow" value={Description}  onChange={(value)=> 
-                                        {setDescription(value)}
+                                        <TextField multiline sx={{width:"100%"}} value={Description}  onChange={(e)=> 
+                                        {setDescription(e.target.value)}
                                         } />
                                         <button className='btn' 
                                         onClick={handleDescription}

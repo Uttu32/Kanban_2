@@ -33,7 +33,7 @@ const Task = (props) => {
       let hour=createdOn.getHours()
       let minute=createdOn.getMinutes()
       let second=createdOn.getSeconds()
-      let fullDate=month+":"+date+":"+year+" "+hour+":"+minute+":"+second
+      let fullDate=date+"-"+month+"-"+year+" "+hour+":"+minute+":"+second
 
       let newTask = {
         id: uuid(),

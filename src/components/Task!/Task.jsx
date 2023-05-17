@@ -14,10 +14,8 @@ const Task = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
-  // const [taskId, setTaskId] = useState('');
-  // const dndRef = useRef(null);
-  const listIdRef = useRef(null);
   const [listId, setListId] = useState("");
+  const ref = useRef(null);
 
   let Id = props.id;
   let listName = props.Lname;
@@ -40,7 +38,6 @@ const Task = (props) => {
       let index = listData.findIndex((ele) => ele.id === Id);
       input[index] = temporary;
       setListData(input);
-      console.log(listData);
       setTitle("");
     }
   }
@@ -76,44 +73,16 @@ const Task = (props) => {
 
   //DRAGANDDROP===============================================================================================================
 
-
-
-  function onDragStart(ev, id) {
-    ev.dataTransfer.setData("id", id);
-    setListId(Id);
-    listIdRef.current = listId; 
-
-
-    console.log( listId);
-    // console.log(listData, "Pura list")
-  }
+  function onDragStart(ev, id) {}
 
   function dragOverHandler(e) {
     e.preventDefault();
   }
 
-  function DropHandler(e) {
-    // const currentListId = listIdRef.current;
-    console.log(listIdRef.current);
-    let DropId = e.dataTransfer.getData("id");
-    // console.log(DropId, Id);
-    let data = [...listData];
-    let ListIndex = data.findIndex((ele) => ele.id === listId);
-    let currentList = data[ListIndex];
-    console.log(currentList);
-    let Taskss = { ...currentList };
-    let TaskList = [...Taskss.task];
-    let taskIndex = TaskList.findIndex((ele) => ele.id === DropId);
-    TaskList.splice(taskIndex, 1);
-    Taskss.task = TaskList;
-    data.splice(ListIndex, 1, Taskss);
-    setListData(data);
-    console.log(listData);
-  }
-  // console.log(listId);
+  function DropHandler(e) {}
 
   return (
-    <div onDragOver={dragOverHandler} onDrop={(e) => DropHandler(e)}>
+    <div onDragOver={dragOverHandler} onDrop={DropHandler}>
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
           ? task.map((val) => (

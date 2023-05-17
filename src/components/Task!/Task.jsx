@@ -73,13 +73,48 @@ const Task = (props) => {
   //   console.log(Task[taskIndex]);
   // }
 
+  //DRAGANDDROP===============================================================================================================
+
+  function onDragStart(ev, id) {
+    ev.dataTransfer.setData("id", id);
+    let data = [...listData];
+    let updatedList = data.map((val1) => {
+      if (val1.id === Id) {
+        let current = { ...val1 };
+        console.log(current);
+        let Task = [...current.task];
+        const index = Task.findIndex((val2) => val2.id === id);
+        Task.splice(index, 1);
+        current.task = Task;
+      }
+    });
+    console.log(updatedList);
+    // console.log(updatedList);
+    // setListData(updatedList);
+    // console.log(listData);
+  }
+
+  function dragOverHandler(e) {
+    e.preventDefault();
+  }
+
+  function DropHandler(e) {
+    let DropId = e.dataTransfer.getData("id");
+    // console.log(DropId, Id);
+  }
+
   return (
-    <div>
+    <div onDragOver={dragOverHandler} onDrop={DropHandler}>
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
-          ? task.map((e) => (
-              <div className={Styles.List} key={e.id}>
-                <ListEdit title={e.title} id={e.id} cardId={Id}/>
+          ? task.map((val) => (
+              <div
+                className={Styles.List}
+                key={val.id}
+                draggable
+                onDragStart={(e) => onDragStart(e, val.id)}
+              >
+                <ListEdit title={val.title} id={val.id} cardId={Id} />
               </div>
             ))
           : null}

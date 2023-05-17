@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import Styles from "./AddCard.module.css";
+import Styles from "./Addcard.module.css";
 import { ListData } from "../../Recoil/Atom/atom";
 import CloseIcon from "@mui/icons-material/Close";
 import uuid from "react-uuid";
@@ -22,7 +22,7 @@ const AddCard = () => {
       const temporary = {
         id: Id,
         listName: listName,
-        task: [],        
+        task: [],
       };
       setListName("");
       setListData([...listData, temporary]);
@@ -40,7 +40,7 @@ const AddCard = () => {
       ) : (
         <div className={Styles.Toggled}>
           <input
-          value={listName}
+            value={listName}
             onChange={(e) => setListName(e.target.value)}
             type="text"
             placeholder="Enter List name "

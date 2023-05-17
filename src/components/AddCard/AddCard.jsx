@@ -19,11 +19,13 @@ const AddCard = () => {
     let Lname = listName.trim();
     if (Lname !== "") {
       let Id = uuid();
+
       const temporary = {
         id: Id,
         listName: listName,
         task: [],        
       };
+      
       setListName("");
       setListData([...listData, temporary]);
     }

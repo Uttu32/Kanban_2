@@ -16,7 +16,7 @@ export default function ItemBox() {
 
     const [showDescription, setShowDescription] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
-    const [Description, setDescription] = useState('Add a more detailed description...')
+    const [Description, setDescription] = useState('')
 
     const [currentCardTitle, setCurrentCardTitle] = useState('')
     const [currentTask, setCurrentTask] = useState('')
@@ -46,48 +46,30 @@ export default function ItemBox() {
         setCurrentTask(currentTaskss)
         console.log(currentTaskss);
 
-    } , [])
+    } , [showDescription])
 
     function handleDescription(){
-
         let input = [...listData]
         // console.log(input, "global state");
         let index = input.findIndex( (ele)=> ele.id === Cid )
-
-        let currentCard = {...input[index]}
-        
+        let currentCard = {...input[index]}        
         let taskss = {...currentCard}
         let Task = [...taskss.task]; 
         console.log(taskss);
         console.log(Task);
-
-        let taskindex = Task.findIndex((ele)=> ele.id === Lid)
-        // console.log(taskindex);
-        // console.log(Task[taskindex]);
-
+        let taskindex = Task.findIndex((ele)=> ele.id === Lid)  
         let currentTaskss = Task[taskindex];
-
-
-
         let particularTask = {...currentTaskss}
         particularTask.description = Description;
-
         Task.splice(taskindex,1,particularTask);
         // console.log(Task);
-
         taskss.task = Task
         console.log(taskss)
-
         input.splice(index,1,taskss);
-
         setListData(input)
-
         // console.log(particularTask);
         // console.log(input, "global");
         // setListData(input);
-
-
-
         setShowDescription(false);
     }
 
@@ -120,19 +102,23 @@ export default function ItemBox() {
                     <div className="Ibox_contentPart">
                         <h4>Description</h4>
                         <div className='description_box'>
-                            {Description}
+                            
                             {
                                 !showDescription ?
-                                    <p onClick={() => setShowDescription(true)}>{currentTask.description}</p> :
+                                <div className='Desc_Start'>
+                                    <p>{currentTask.description}</p>
+                                    <button onClick={() => setShowDescription(true)}>Edit</button>
+                                    </div>
+                                    :
                                     <>
                                         <ReactQuill theme="snow" value={Description}  onChange={(value)=> 
-                                        {console.log(value, "Point")
-                                        setDescription(value)}
+                                        {setDescription(value)}
                                         } />
                                         <button className='btn' 
                                         onClick={handleDescription}
                                         style={{ backgroundColor: 'blue', color: 'white' }}>Save</button>
-                                        <button className='btn' onClick={() => setShowDescription(false)}>Cancel</button>
+                                        <button className='btn' onClick={() =>{ setShowDescription(false)
+                                        setDescription(currentTask.description)}}>Cancel</button>
                                     </>
                             }
                         </div>

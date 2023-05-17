@@ -26,11 +26,13 @@ const Task = (props) => {
     let TitleOfList = title.trim();
     if (TitleOfList !== "") {
       let input = [...listData];
+
       let newTask = {
         id: uuid(),
         title: title,
         description: "",
       };
+      
       const temporary = {
         id: Id,
         listName: listName,

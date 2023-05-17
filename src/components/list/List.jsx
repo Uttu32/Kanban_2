@@ -6,7 +6,6 @@ import { ListData } from "../../Recoil/Atom/atom";
 import { useRecoilState } from "recoil";
 
 const List = () => {
-  const [addItem, setAddItem] = useState(false);
   const [listData, setListData] = useRecoilState(ListData);
   const [inputVisible, setInputVisible] = useState(false);
 
@@ -50,8 +49,8 @@ const List = () => {
                 <p
                   style={{ width: "100%" }}
                   onClick={() => setInputVisible(true)}
-                >
-                  {ele.listName}
+                ><strong>
+                  {ele.listName}</strong>
                 </p>
               )}
             </div>

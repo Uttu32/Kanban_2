@@ -14,14 +14,12 @@ import { ListData } from '../../Recoil/Atom/atom';
 
 export default function ItemBox() {
 
-    console.log("I am Item Box");
-
     const [showDescription, setShowDescription] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
-    const [Description, setDescription] = useState('Add a more detailed description...')
+    const [Description, setDescription] = useState('')
 
     const [currentCardTitle, setCurrentCardTitle] = useState('')
-    const [currentTaskTitle, setCurrentTaskTitle] = useState('')
+    const [currentTask, setCurrentTask] = useState('')
 
     const navigate = useNavigate()
     const { Cid, Lid } = useParams();
@@ -30,7 +28,7 @@ export default function ItemBox() {
 
     useEffect(()=> {
         let input = [...listData]
-        console.log(input);
+        // console.log(input, "global state");
         let index = input.findIndex( (ele)=> ele.id === Cid )
 
         let currentCard = {...input[index]}
@@ -43,18 +41,34 @@ export default function ItemBox() {
         let taskindex = Task.findIndex((ele)=> ele.id === Lid)
         // console.log(Task[taskindex]);
 
-        let currentTask = Task[taskindex];
+        let currentTaskss = Task[taskindex];
 
-        setCurrentTaskTitle(currentTask)
-        console.log(currentTask);
+        setCurrentTask(currentTaskss)
+        console.log(currentTaskss);
 
-    } , [])
+    } , [showDescription])
 
     function handleDescription(){
-        let input = {...currentTaskTitle}
-        input.description = Description;
-        console.log(Description);
-        console.log(input, "global");
+        let input = [...listData]
+        // console.log(input, "global state");
+        let index = input.findIndex( (ele)=> ele.id === Cid )
+        let currentCard = {...input[index]}        
+        let taskss = {...currentCard}
+        let Task = [...taskss.task]; 
+        console.log(taskss);
+        console.log(Task);
+        let taskindex = Task.findIndex((ele)=> ele.id === Lid)  
+        let currentTaskss = Task[taskindex];
+        let particularTask = {...currentTaskss}
+        particularTask.description = Description;
+        Task.splice(taskindex,1,particularTask);
+        // console.log(Task);
+        taskss.task = Task
+        console.log(taskss)
+        input.splice(index,1,taskss);
+        setListData(input)
+        // console.log(particularTask);
+        // console.log(input, "global");
         // setListData(input);
         setShowDescription(false);
     }
@@ -71,7 +85,7 @@ export default function ItemBox() {
                             <CreditCardIcon />
                         </div>
                         <div className='Ibox_contentPart'>
-                            <h3>{currentTaskTitle.title}</h3>
+                            <h3>{currentTask.title}</h3>
                             <p>in List {currentCardTitle}</p>
                             <br />
                             <h5>Notifications</h5>
@@ -88,19 +102,23 @@ export default function ItemBox() {
                     <div className="Ibox_contentPart">
                         <h4>Description</h4>
                         <div className='description_box'>
-                            {Description}
+                            
                             {
                                 !showDescription ?
-                                    <p onClick={() => setShowDescription(true)}>{currentTaskTitle.description}</p> :
+                                <div className='Desc_Start'>
+                                    <p>{currentTask.description}</p>
+                                    <button onClick={() => setShowDescription(true)}>Edit</button>
+                                    </div>
+                                    :
                                     <>
                                         <ReactQuill theme="snow" value={Description}  onChange={(value)=> 
-                                        {console.log(value, "Point")
-                                        setDescription(value)}
+                                        {setDescription(value)}
                                         } />
                                         <button className='btn' 
                                         onClick={handleDescription}
                                         style={{ backgroundColor: 'blue', color: 'white' }}>Save</button>
-                                        <button className='btn' onClick={() => setShowDescription(false)}>Cancel</button>
+                                        <button className='btn' onClick={() =>{ setShowDescription(false)
+                                        setDescription(currentTask.description)}}>Cancel</button>
                                     </>
                             }
                         </div>

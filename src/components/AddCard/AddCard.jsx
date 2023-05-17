@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import Styles from "./AddCard.module.css";
+import Styles from "./Addcard.module.css";
 import { ListData } from "../../Recoil/Atom/atom";
 import CloseIcon from "@mui/icons-material/Close";
 import uuid from "react-uuid";

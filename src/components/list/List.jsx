@@ -50,8 +50,8 @@ const List = () => {
                 <p
                   style={{ width: "100%" }}
                   onClick={() => setInputVisible(true)}
-                >
-                  {ele.listName}
+                ><strong>
+                  {ele.listName}</strong>
                 </p>
               )}
             </div>

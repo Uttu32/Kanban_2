@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { ListData } from "../../Recoil/Atom/atom";
 import { useRecoilState } from "recoil";
 import Styles from "./Task.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import ListEdit from "../ListEdit/ListEdit";
 import RollerShadesClosedOutlinedIcon from "@mui/icons-material/RollerShadesClosedOutlined";
 import uuid from "react-uuid";
@@ -16,7 +14,10 @@ const Task = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
+  // const [taskId, setTaskId] = useState('');
+  // const dndRef = useRef(null);
+  const listIdRef = useRef(null);
+  const [listId, setListId] = useState("");
 
   let Id = props.id;
   let listName = props.Lname;
@@ -75,23 +76,16 @@ const Task = (props) => {
 
   //DRAGANDDROP===============================================================================================================
 
+
+
   function onDragStart(ev, id) {
     ev.dataTransfer.setData("id", id);
-    let data = [...listData];
-    let updatedList = data.map((val1) => {
-      if (val1.id === Id) {
-        let current = { ...val1 };
-        console.log(current);
-        let Task = [...current.task];
-        const index = Task.findIndex((val2) => val2.id === id);
-        Task.splice(index, 1);
-        current.task = Task;
-      }
-    });
-    console.log(updatedList);
-    // console.log(updatedList);
-    // setListData(updatedList);
-    // console.log(listData);
+    setListId(Id);
+    listIdRef.current = listId; 
+
+
+    console.log( listId);
+    // console.log(listData, "Pura list")
   }
 
   function dragOverHandler(e) {
@@ -99,12 +93,27 @@ const Task = (props) => {
   }
 
   function DropHandler(e) {
+    // const currentListId = listIdRef.current;
+    console.log(listIdRef.current);
     let DropId = e.dataTransfer.getData("id");
     // console.log(DropId, Id);
+    let data = [...listData];
+    let ListIndex = data.findIndex((ele) => ele.id === listId);
+    let currentList = data[ListIndex];
+    console.log(currentList);
+    let Taskss = { ...currentList };
+    let TaskList = [...Taskss.task];
+    let taskIndex = TaskList.findIndex((ele) => ele.id === DropId);
+    TaskList.splice(taskIndex, 1);
+    Taskss.task = TaskList;
+    data.splice(ListIndex, 1, Taskss);
+    setListData(data);
+    console.log(listData);
   }
+  // console.log(listId);
 
   return (
-    <div onDragOver={dragOverHandler} onDrop={DropHandler}>
+    <div onDragOver={dragOverHandler} onDrop={(e) => DropHandler(e)}>
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
           ? task.map((val) => (

@@ -26,6 +26,7 @@ const AddCard = () => {
       };
       setListName("");
       setListData([...listData, temporary]);
+      localStorage.setItem('Card', JSON.stringify([...listData, temporary]));
     }
   }
 

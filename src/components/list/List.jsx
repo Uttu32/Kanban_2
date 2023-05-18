@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Styles from "./List.module.css";
 import Task from "../Task!/Task";
@@ -10,10 +10,18 @@ const List = () => {
   const [listData, setListData] = useRecoilState(ListData);
   const [inputVisible, setInputVisible] = useState(false);
 
+  useEffect(() => {
+    const localStorageData = localStorage.getItem('Card')
+    if (localStorageData) {
+      setListData(JSON.parse(localStorageData))
+    }
+  }, [setListData]);
+
   function handleDelete(Id) {
     let input = [...listData];
     input = input.filter((ele) => ele.id !== Id);
     setListData(input);
+    localStorage.setItem('Card', JSON.stringify(input));
     console.log(listData)
   }
 
@@ -24,6 +32,7 @@ const List = () => {
     current.listName = e.target.value;
     input[index] = current;
     setListData(input);
+    localStorage.setItem('Card', JSON.stringify(input));
   }
 
   return (
@@ -43,7 +52,7 @@ const List = () => {
                   <DeleteIcon
                     onClick={() => handleDelete(ele.id)}
                     fontSize="small"
-                    
+
                   />
                 </form>
               ) : (
@@ -55,7 +64,7 @@ const List = () => {
                 </p>
               )}
             </div>
-            <Task id={ele.id} Lname={ele.listName} task={ele.task}/>
+            <Task id={ele.id} Lname={ele.listName} task={ele.task} />
           </div>
         );
       })}

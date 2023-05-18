@@ -65,6 +65,7 @@ export default function ItemBox() {
     console.log(taskss);
     input.splice(index, 1, taskss);
     setListData(input);
+    localStorage.setItem("Card",JSON.stringify(input))
     console.log(listData);
     // console.log(input, "global");
     // setListData(input);

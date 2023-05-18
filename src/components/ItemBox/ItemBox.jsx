@@ -60,12 +60,12 @@ export default function ItemBox() {
     let particularTask = { ...currentTaskss };
     particularTask.description = Description;
     Task.splice(taskindex, 1, particularTask);
-    // console.log(Task);
+    console.log(Task);
     taskss.task = Task;
     console.log(taskss);
     input.splice(index, 1, taskss);
     setListData(input);
-    // console.log(particularTask);
+    console.log(listData);
     // console.log(input, "global");
     // setListData(input);
     setShowDescription(false);
@@ -99,6 +99,7 @@ export default function ItemBox() {
           <div className="Ibox_contentPart">
             <h4>Description</h4>
             <div className="description_box">
+            
               {!showDescription ? (
                 <div className="Desc_Start">
                   <p>{currentTask.description}</p>

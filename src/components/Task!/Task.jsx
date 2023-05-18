@@ -49,7 +49,11 @@ const Task = (props) => {
       };
       let index = listData.findIndex((ele) => ele.id === Id);
       input[index] = temporary;
+      
       setListData(input);
+
+      localStorage.setItem('Card', JSON.stringify(input));
+
       console.log(listData);
       setTitle("");
     }

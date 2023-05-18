@@ -16,6 +16,10 @@
 
 .inner{
     display: flex;
+    width: 87vw;
+    height: 100%;
+    overflow: auto;
+    overflow-x: inherit;
 }
 
 .MainNav{

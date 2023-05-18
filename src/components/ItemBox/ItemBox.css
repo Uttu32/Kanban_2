@@ -143,7 +143,7 @@
     align-items: center;
 }
 
-.Ibox_activityHeaderDiv > button{
+.Ibox_activityHeaderDiv>div>button{
     outline: none;
     border: none;
 
@@ -152,4 +152,8 @@
 .Ibox_activityHeaderDiv > button:hover{
     background-color: lightgray;
     cursor: pointer;
+}
+
+.TimeDetail{
+    margin: 0.4rem ;
 }

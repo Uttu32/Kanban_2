@@ -25,6 +25,8 @@ const ListEdit = (props) => {
     currentList.task = updatedTasks;
     updateList[index] = currentList;
     setListData(updateList);
+    localStorage.setItem('Card', JSON.stringify(updateList));
+
     console.log(listData);
   }
 
@@ -43,7 +45,8 @@ const ListEdit = (props) => {
     console.log(taskss)
     input.splice(index, 1,taskss )
     setListData(input);
-    
+    localStorage.setItem('Card', JSON.stringify(input));
+
     setIsInput(!isInput);    
   }
 

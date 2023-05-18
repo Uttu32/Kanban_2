@@ -15,7 +15,7 @@ const Task = (props) => {
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
   const [listId, setListId] = useState("");
-  const ref = useRef(null);
+  const taskRef = useRef(null);
 
   let Id = props.id;
   let listName = props.Lname;
@@ -73,16 +73,26 @@ const Task = (props) => {
 
   //DRAGANDDROP===============================================================================================================
 
-  function onDragStart(ev, id) {}
+  function onDragStart(e, id, listId) {
+    e.dataTransfer.setData("text/plain", id);
+    e.dataTransfer.setData("text/listId", listId);
+  }
 
   function dragOverHandler(e) {
     e.preventDefault();
   }
 
-  function DropHandler(e) {}
+  function DropHandler(e, currentListId) {
+    let DropId = e.dataTransfer.getData("text/plain");
+    const originalListId = e.dataTransfer.getData("text/listId");
+  }
 
   return (
-    <div onDragOver={dragOverHandler} onDrop={DropHandler}>
+    <div
+      onDragOver={dragOverHandler}
+      onDrop={(e) => DropHandler(e, listId)}
+      ref={taskRef}
+    >
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
           ? task.map((val) => (
@@ -90,7 +100,7 @@ const Task = (props) => {
                 className={Styles.List}
                 key={val.id}
                 draggable
-                onDragStart={(e) => onDragStart(e, val.id)}
+                onDragStart={(e) => onDragStart(e, val.id, listId)}
               >
                 <ListEdit title={val.title} id={val.id} cardId={Id} />
               </div>

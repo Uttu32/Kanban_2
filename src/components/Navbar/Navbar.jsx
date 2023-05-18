@@ -1,23 +1,30 @@
 import React, {useState} from 'react'
-import './Navbar.css'
-
+import './Navbar.css';
 import { HiStar,  } from "react-icons/hi2";
 import { IoIosStarOutline } from "react-icons/io";
-
 import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineChartBar, HiChevronDown } from "react-icons/hi";
 import { HiOutlineRocketLaunch, HiBolt, HiBars3BottomLeft } from "react-icons/hi2";
-import Sidebar from '../sidebar/Sidebar';
-
-
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { ListData } from '../../Recoil/Atom/atom';
 
 export default function Navbar() {
 
     const [stared, setStared] = useState(false) 
+    const [listData, setListData] = useRecoilState(ListData)
+    let navigate = useNavigate();
+
+    function handleClear(){
+        let input = [...listData];
+        input = [];
+        setListData(input);
+        localStorage.clear("Card")
+    }
 
     return (
         <>
-        <div style={{display:"flex", alignItem:"start"}}>
+        <div style={{display:"flex", alignItem:"start", opacity:"0.7"}}>
         {/* <Sidebar /> */}
             <nav className='nav_mainBackground'>
                 <div className='nav_leftDiv'>
@@ -38,9 +45,9 @@ export default function Navbar() {
                 </div>
 
                 <div className='nav_rightDiv'>
-                    <p><HiOutlineRocketLaunch /> &nbsp; Power-Ups</p>
+                    <p onClick={handleClear}><HiOutlineRocketLaunch /> &nbsp; Clean-Ups</p>
                     <p><HiBolt/> &nbsp; Automation</p>
-                    <p><HiBars3BottomLeft/> &nbsp; Filter</p>
+                    <p onClick={()=> navigate("/background")} ><HiBars3BottomLeft/> &nbsp; Background</p>
 
                 </div>
             </nav>

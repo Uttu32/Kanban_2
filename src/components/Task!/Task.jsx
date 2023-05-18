@@ -14,7 +14,7 @@ const Task = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
-  const [listId, setListId] = useState("");
+  // const [listId, setListId] = useState("");
   const taskRef = useRef(null);
 
   let Id = props.id;
@@ -73,24 +73,47 @@ const Task = (props) => {
 
   //DRAGANDDROP===============================================================================================================
 
-  function onDragStart(e, id, listId) {
+  function onDragStart(e, id) {
     e.dataTransfer.setData("text/plain", id);
-    e.dataTransfer.setData("text/listId", listId);
+    e.dataTransfer.setData("text/listId", Id);
+    // console.log(listId)
   }
 
   function dragOverHandler(e) {
     e.preventDefault();
   }
 
-  function DropHandler(e, currentListId) {
+  function DropHandler(e) {
     let DropId = e.dataTransfer.getData("text/plain");
     const originalListId = e.dataTransfer.getData("text/listId");
+    let input = [...listData];
+    let index = input.findIndex((ele) => ele.id === Id);
+    let current = { ...input[index] };
+    let Task = [...current.task];
+
+    console.log(listData);
+
+    //dragged Card
+    let Index2 = input.findIndex((ele) => ele.id === originalListId);
+    let current2 = { ...input[Index2] };
+    let Task2 = [...current2.task];
+    let TaskIndex2 = Task2.findIndex((ele) => ele.id === DropId);
+    Task.push(Task2[TaskIndex2]);
+    Task2.splice(TaskIndex2, 1);
+
+    current.task = Task;
+    input[index] = current;
+
+    current2.task = Task2;
+    input[Index2] = current2;
+
+    setListData(input);
   }
 
   return (
     <div
       onDragOver={dragOverHandler}
-      onDrop={(e) => DropHandler(e, listId)}
+      onDrop={(e) => DropHandler(e)}
       ref={taskRef}
     >
       <div className={Styles.TaskBoundary}>
@@ -100,7 +123,7 @@ const Task = (props) => {
                 className={Styles.List}
                 key={val.id}
                 draggable
-                onDragStart={(e) => onDragStart(e, val.id, listId)}
+                onDragStart={(e) => onDragStart(e, val.id)}
               >
                 <ListEdit title={val.title} id={val.id} cardId={Id} />
               </div>

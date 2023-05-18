@@ -26,11 +26,22 @@ const Task = (props) => {
     let TitleOfList = title.trim();
     if (TitleOfList !== "") {
       let input = [...listData];
+      let createdOn=new Date()
+      let month=createdOn.getMonth()+1
+      let date=createdOn.getDate()
+      let year=createdOn.getFullYear()
+      let hour=createdOn.getHours()
+      let minute=createdOn.getMinutes()
+      let second=createdOn.getSeconds()
+      let fullDate=date+"-"+month+"-"+year+" "+hour+":"+minute+":"+second
+
       let newTask = {
         id: uuid(),
         title: title,
         description: "",
+        time:fullDate
       };
+      
       const temporary = {
         id: Id,
         listName: listName,

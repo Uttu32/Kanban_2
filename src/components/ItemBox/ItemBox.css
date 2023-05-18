@@ -70,13 +70,51 @@
     /* background-color: rgb(236, 236, 236); */
 }
 
-.description_box > p{
-    width: 100%;
-    min-height: 100%;
+.Desc_Start{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.description_box>div>p{
+    width: 80%;
+    min-height: 80%;
     background-color: rgb(236, 236, 236);
     cursor: pointer;
     padding: 5px 10px;
 }
+
+.description_box>div>button{
+    border: none;
+    background: none;
+    
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    vertical-align: middle;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #0366d6;
+    background-color: #fafbfc;
+    border-color: #1b1f2326;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+    transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    transition-property: color, background-color, border-color;
+    
+
+}
+
+.description_box>div>button:hover {
+        color: #ffffff;
+        background-color: #0366d6;
+        border-color: #1b1f2326;
+        box-shadow: rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;
+        transition-duration: 0.1s;
+    }
 
 .btn{
     border-radius: 4px;
@@ -105,7 +143,7 @@
     align-items: center;
 }
 
-.Ibox_activityHeaderDiv > button{
+.Ibox_activityHeaderDiv>div>button{
     outline: none;
     border: none;
 
@@ -114,4 +152,8 @@
 .Ibox_activityHeaderDiv > button:hover{
     background-color: lightgray;
     cursor: pointer;
+}
+
+.TimeDetail{
+    margin: 0.4rem ;
 }

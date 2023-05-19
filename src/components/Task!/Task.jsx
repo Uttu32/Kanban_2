@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { ListData } from "../../Recoil/Atom/atom";
 import { useRecoilState } from "recoil";
 import Styles from "./Task.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import ListEdit from "../ListEdit/ListEdit";
 import RollerShadesClosedOutlinedIcon from "@mui/icons-material/RollerShadesClosedOutlined";
 import uuid from "react-uuid";
@@ -16,7 +14,8 @@ const Task = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
-  const [isEditable, setIsEditable] = useState(false);
+  // const [listId, setListId] = useState("");
+  const taskRef = useRef(null);
 
   let Id = props.id;
   let listName = props.Lname;
@@ -89,13 +88,63 @@ const Task = (props) => {
   //   console.log(Task[taskIndex]);
   // }
 
+  //DRAGANDDROP===============================================================================================================
+
+  function onDragStart(e, id) {
+    e.dataTransfer.setData("text/plain", id);
+    e.dataTransfer.setData("text/listId", Id);
+    // console.log(listId)
+  }
+
+  function dragOverHandler(e) {
+    e.preventDefault();
+  }
+
+  function DropHandler(e) {
+    let DropId = e.dataTransfer.getData("text/plain");
+    const originalListId = e.dataTransfer.getData("text/listId");
+    let input = [...listData];
+    let index = input.findIndex((ele) => ele.id === Id);
+    let current = { ...input[index] };
+    let Task = [...current.task];
+
+    console.log(listData);
+
+    //dragged Card
+    let Index2 = input.findIndex((ele) => ele.id === originalListId);
+    let current2 = { ...input[Index2] };
+    let Task2 = [...current2.task];
+    let TaskIndex2 = Task2.findIndex((ele) => ele.id === DropId);
+    Task.push(Task2[TaskIndex2]);
+    Task2.splice(TaskIndex2, 1);
+
+    current.task = Task;
+    input[index] = current;
+
+    current2.task = Task2;
+    input[Index2] = current2;
+
+    setListData(input);
+    localStorage.setItem('Card', JSON.stringify(input));
+    
+  }
+
   return (
-    <div>
+    <div
+      onDragOver={dragOverHandler}
+      onDrop={(e) => DropHandler(e)}
+      ref={taskRef}
+    >
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
-          ? task.map((e) => (
-              <div className={Styles.List} key={e.id}>
-                <ListEdit title={e.title} id={e.id} cardId={Id}/>
+          ? task.map((val) => (
+              <div
+                className={Styles.List}
+                key={val.id}
+                draggable
+                onDragStart={(e) => onDragStart(e, val.id)}
+              >
+                <ListEdit title={val.title} id={val.id} cardId={Id} />
               </div>
             ))
           : null}

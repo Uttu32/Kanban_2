@@ -1,13 +1,23 @@
-.Main{
-    display: flex;
-    align-items: center;
+.Main {
+  display: flex;
+  align-items: center;
 }
-.Main>div{
-    width:12rem;
-    height: 1.4rem;
-
+.Main > div {
+  width: 12rem;
+  height: 1.4rem;
 }
 
-.Main>span{
-    display: flex;
+.Main > span {
+  display: flex;
+}
+.editInput {
+  height: 100%;
+  font-size: small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+  border-radius: 10%;
+  border-width: 3px;
+  font-style: normal;
+  text-shadow: 2px 2px solid black;
+  text-decoration: brown;
 }

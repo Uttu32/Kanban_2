@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./ItemBox.css";
 import TextField from "@mui/material/TextField";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import CloseIcon from "@mui/icons-material/Close";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -11,14 +10,17 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import { useNavigate, useParams } from "react-router";
 import { useRecoilState } from "recoil";
 import { ListData } from "../../Recoil/Atom/atom";
+import uuid from "react-uuid";
 
 export default function ItemBox() {
   const [showDescription, setShowDescription] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [Description, setDescription] = useState("");
+  const [showComment, setShowComment] = useState(false);
 
   const [currentCardTitle, setCurrentCardTitle] = useState("");
   const [currentTask, setCurrentTask] = useState("");
+  const [comment, setComment] = useState('')
 
   const navigate = useNavigate();
   const { Cid, Lid } = useParams();
@@ -72,6 +74,38 @@ export default function ItemBox() {
     // setListData(input);
     setShowDescription(false);
   }
+  
+  function handleCommentSubmit() {
+        let cmd
+
+        setShowComment(false)
+        setComment('')
+    }
+
+    function handleCommentDelete(ind){
+        let input = [...listData];
+        let index = input.findIndex((ele) => ele.id === Cid);
+        let currentCard = { ...input[index] };
+        let taskss = { ...currentCard };
+        let Task = [...taskss.task];
+        let taskindex = Task.findIndex((ele) => ele.id === Lid);
+        let currentTaskss = Task[taskindex];
+        let particularTask = { ...currentTaskss };
+        let commentsArr = [...particularTask.comments]
+        // console.log(comments, ind)
+        // if(ind < 1){
+        //     particularTask.comments = []
+        // }
+        // else{
+            commentsArr.splice(ind, 1)
+            particularTask.comments = commentsArr
+        // }
+        Task.splice(taskindex, 1, particularTask);
+        taskss.task = Task;
+        input.splice(index, 1, taskss);
+        setListData(input);
+        console.log(input)
+    }
 
   return (
     <div className="Ibox_mainBackground">
@@ -161,18 +195,66 @@ export default function ItemBox() {
                   </button>
                 )}
               </div>
-              
+                </div>
+                        <div>
+                            {
+                                !showComment ? (
+                                    <div style={{ textAlign: 'left', padding:'6px 14px ', backgroundColor:'lightgrey', marginTop:'10px' }}>
+                                        <p onClick={() => setShowComment(true)}>Write a comment...</p>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <TextField
+                                            multiline
+                                            sx={{ width: "100%" }}
+                                            value={comment}
+                                            onChange={(e) => {
+                                                setComment(e.target.value);
+                                            }}
+                                        />
+                                        <button
+                                            className="btn"
+                                            onClick={handleCommentSubmit}
+                                            style={{ backgroundColor: "blue", color: "white" }}
+                                        >
+                                            Save
+                                        </button>
+                                        <button
+                                            className="btn"
+                                            onClick={() => {
+                                                setShowDescription(false);
+                                                // setDescription(currentTask.description);
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </>
+                                )
+                            }
+                            {
+                                currentTask?.comments?.map((elem, ind) => {
+                                    return (
+                                        <div key={ind} className="comment_div">
+                                            <div><p>{elem}</p></div>
+                                            <span onClick={()=>handleCommentDelete(ind)}>Delete</span>
+                                        </div>
+
+                                    )
+                                })
+                            }
+                        </div>
+
+                        <div>
+                            {showDetails && (
+                                <div className="TimeDetail">
+                                    <p> Created On : {currentTask.time}</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </section>
+
             </div>
-            <div>
-                {showDetails && (
-                  <div className="TimeDetail">
-                    <p> Created On : {currentTask.time}</p>
-                  </div>
-                )}
-              </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  );
+        </div>
+    );
 }

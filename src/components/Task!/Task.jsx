@@ -38,7 +38,8 @@ const Task = (props) => {
         id: uuid(),
         title: title,
         description: "",
-        time:fullDate
+        time:fullDate,
+        comments: []
       };
       
       const temporary = {

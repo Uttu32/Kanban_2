@@ -24,7 +24,7 @@ export default function Navbar() {
 
     return (
         <>
-        <div style={{display:"flex", alignItem:"start", opacity:"0.7"}}>
+        <div style={{display:"flex", alignItem:"start", opacity:"1.7"}}>
         {/* <Sidebar /> */}
             <nav className='nav_mainBackground'>
                 <div className='nav_leftDiv'>
@@ -36,17 +36,17 @@ export default function Navbar() {
                             <p onClick={()=> setStared(true)}><IoIosStarOutline/></p>
                     }
 
-                    <p><FaUserFriends/> &nbsp; Workspace visible </p>
+                    {/* <p><FaUserFriends/> &nbsp; Workspace visible </p>
 
                     <div>
                         <span><HiOutlineChartBar/> &nbsp; Board</span>
                         <span><HiChevronDown/></span>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className='nav_rightDiv'>
                     <p onClick={handleClear}><HiOutlineRocketLaunch /> &nbsp; Clean-Ups</p>
-                    <p><HiBolt/> &nbsp; Automation</p>
+                    {/* <p><HiBolt/> &nbsp; Automation</p> */}
                     <p onClick={()=> navigate("/background")} ><HiBars3BottomLeft/> &nbsp; Background</p>
 
                 </div>

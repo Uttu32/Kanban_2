@@ -1,9 +1,8 @@
 .image{
     display: flex;
     margin-left: 1rem;
-    border: 1px solid;
     margin: auto;
-    width: 100%;
+    width: 90%;
     flex-wrap: wrap;
     gap: 1.5rem;
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React,{useEffect} from "react";
 import Navbar from "./components/Navbar/Navbar";
 import MainNavbar from "./components/MainNavbar/MainNavbar";
 import List from "./components/list/List";
@@ -11,7 +11,15 @@ import { Bcg_Image } from "./Data/Data";
 
 function App() {
 
+  
   const [image, setImage] = useRecoilState(Image);
+
+  useEffect(() => {
+    const localStorageData = localStorage.getItem('Image')
+    if (localStorageData) {
+      setImage(JSON.parse(localStorageData))
+    }
+  }, [setImage]);
 
   console.log(image);
   return (
@@ -25,7 +33,7 @@ function App() {
       <div className="Main_Background" style={{backgroundImage: `url(${Bcg_Image[image]})` }}>
 
 
-        <Sidebar />
+        {/* <Sidebar /> */}
 
 
         <div className="mainContent">

@@ -12,6 +12,7 @@ export default function BackgroundCard() {
 
     function handleCLick(index){
         setImage(index);
+        localStorage.setItem('Image', JSON.stringify(index));
         navigate("/")
     }
   return (

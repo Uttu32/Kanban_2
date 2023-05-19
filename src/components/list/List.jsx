@@ -21,7 +21,6 @@ const List = () => {
     input = input.filter((ele) => ele.id !== Id);
     setListData(input);
     localStorage.setItem('Card', JSON.stringify(input));
-    console.log(listData)
   }
 
   function handleChange(e, Id) {

@@ -6,7 +6,6 @@ import Styles from "./ListEdit.module.css";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
-
 const ListEdit = (props) => {
   let Title = props.title;
   let ListId = props.id;
@@ -25,7 +24,7 @@ const ListEdit = (props) => {
     currentList.task = updatedTasks;
     updateList[index] = currentList;
     setListData(updateList);
-    localStorage.setItem('Card', JSON.stringify(updateList));
+    localStorage.setItem("Card", JSON.stringify(updateList));
 
     console.log(listData);
   }
@@ -34,43 +33,43 @@ const ListEdit = (props) => {
     e.preventDefault();
     let input = [...listData];
     let index = input.findIndex((ele) => ele.id === CardId);
-    let current = input[index];    
+    let current = input[index];
     let taskss = { ...current };
-    let Task = [...taskss.task];    
-    let taskIndex = Task.findIndex((ele) => ele.id === ListId);    
-    let EditTitle = {...Task[taskIndex]}
+    let Task = [...taskss.task];
+    let taskIndex = Task.findIndex((ele) => ele.id === ListId);
+    let EditTitle = { ...Task[taskIndex] };
     EditTitle.title = title;
-    Task.splice(taskIndex,1, EditTitle);
+    Task.splice(taskIndex, 1, EditTitle);
     taskss.task = Task;
-    console.log(taskss)
-    input.splice(index, 1,taskss )
+    console.log(taskss);
+    input.splice(index, 1, taskss);
     setListData(input);
-    localStorage.setItem('Card', JSON.stringify(input));
-
-    setIsInput(!isInput);    
+    localStorage.setItem("Card", JSON.stringify(input));
+    setIsInput(!isInput);
   }
 
-  function handleNavigate(){
-    navigate(`/${CardId}/${ListId}/edit`)
+  function handleNavigate() {
+    navigate(`/${CardId}/${ListId}/edit`);
   }
 
   return (
     <div className={Styles.Main}>
       <div>
         {isInput ? (
-          <form  onSubmit={(e)=>handleEdit(e)}>
+          <form onSubmit={(e) => handleEdit(e)}>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className={Styles.editInput}
             />
           </form>
         ) : (
-          <p onClick={ handleNavigate } >{Title}</p>
+          <p onClick={handleNavigate}>{Title}</p>
         )}
       </div>
       <span>
-        <EditTwoToneIcon onClick={()=>setIsInput(!isInput)} />
+        <EditTwoToneIcon onClick={() => setIsInput(!isInput)} />
         <DeleteIcon onClick={() => handleDelete()} />
       </span>
     </div>

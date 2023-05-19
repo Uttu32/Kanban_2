@@ -13,7 +13,7 @@ export default function MainNavbar() {
                     <h2>Kanban Board</h2>
                 </div>
 
-                <p>Workspaces &nbsp; <HiChevronDown/></p>
+                {/* <p>Workspaces &nbsp; <HiChevronDown/></p>
                 
                 <p>Recent &nbsp; <HiChevronDown/></p>
                 
@@ -21,7 +21,7 @@ export default function MainNavbar() {
                 
                 <p>Templates &nbsp; <HiChevronDown/></p>
 
-                <p><span>Create</span></p>
+                <p><span>Create</span></p> */}
             </div>
 
             <div className='Mnav_rightDiv'>

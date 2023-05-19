@@ -43,6 +43,7 @@ export default function ItemBox() {
     let currentTaskss = Task[taskindex];
 
     setCurrentTask(currentTaskss);
+    setDescription(currentTask.description);
     console.log(currentTaskss);
   }, [showDescription]);
 

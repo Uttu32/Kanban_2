@@ -19,4 +19,16 @@ Akhilesh Sharma- https://github.com/akh2429
 *User Can add new Task Inside Every New list.
 *USer Can drag and drop task fron one List to another.
 
+Data Structure _ 
 
+List:- 
+[
+{
+"listid":
+"listName":
+"task":[
+"taskid":
+"taskName":
+"taskDescription":]
+}
+]

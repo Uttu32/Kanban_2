@@ -9,13 +9,13 @@ import AddIcon from "@mui/icons-material/Add";
 import ListEdit from "../ListEdit/ListEdit";
 import RollerShadesClosedOutlinedIcon from "@mui/icons-material/RollerShadesClosedOutlined";
 import uuid from "react-uuid";
+import { Draggable } from "react-beautiful-dnd";
 
 const Task = (props) => {
   const [listData, setListData] = useRecoilState(ListData);
   const [title, setTitle] = useState("");
   const [addItem, setAddItem] = useState(false);
   // const [listId, setListId] = useState("");
-  const taskRef = useRef(null);
 
   let Id = props.id;
   let listName = props.Lname;
@@ -25,23 +25,34 @@ const Task = (props) => {
     let TitleOfList = title.trim();
     if (TitleOfList !== "") {
       let input = [...listData];
-      let createdOn=new Date()
-      let month=createdOn.getMonth()+1
-      let date=createdOn.getDate()
-      let year=createdOn.getFullYear()
-      let hour=createdOn.getHours()
-      let minute=createdOn.getMinutes()
-      let second=createdOn.getSeconds()
-      let fullDate=date+"-"+month+"-"+year+" "+hour+":"+minute+":"+second
+      let createdOn = new Date();
+      let month = createdOn.getMonth() + 1;
+      let date = createdOn.getDate();
+      let year = createdOn.getFullYear();
+      let hour = createdOn.getHours();
+      let minute = createdOn.getMinutes();
+      let second = createdOn.getSeconds();
+      let fullDate =
+        date +
+        "-" +
+        month +
+        "-" +
+        year +
+        " " +
+        hour +
+        ":" +
+        minute +
+        ":" +
+        second;
 
       let newTask = {
         id: uuid(),
         title: title,
         description: "",
-        time:fullDate,
-        comments: []
+        time: fullDate,
+        comments: [],
       };
-      
+
       const temporary = {
         id: Id,
         listName: listName,
@@ -49,10 +60,10 @@ const Task = (props) => {
       };
       let index = listData.findIndex((ele) => ele.id === Id);
       input[index] = temporary;
-      
+
       setListData(input);
 
-      localStorage.setItem('Card', JSON.stringify(input));
+      localStorage.setItem("Card", JSON.stringify(input));
 
       console.log(listData);
       setTitle("");
@@ -71,7 +82,7 @@ const Task = (props) => {
   // }
 
   function handleChange(e) {
-    setTitle(e.target.value);
+    setTitle(e.target.eleue);
   }
 
   function handleAddButton() {
@@ -90,62 +101,65 @@ const Task = (props) => {
 
   //DRAGANDDROP===============================================================================================================
 
-  function onDragStart(e, id) {
-    e.dataTransfer.setData("text/plain", id);
-    e.dataTransfer.setData("text/listId", Id);
-    // console.log(listId)
-  }
+  // function onDragStart(e, id) {
+  //   e.dataTransfer.setData("text/plain", id);
+  //   e.dataTransfer.setData("text/listId", Id);
+  //   // console.log(listId)
+  // }
 
-  function dragOverHandler(e) {
-    e.preventDefault();
-  }
+  // function dragOverHandler(e) {
+  //   e.preventDefault();
+  // }
 
-  function DropHandler(e) {
-    let DropId = e.dataTransfer.getData("text/plain");
-    const originalListId = e.dataTransfer.getData("text/listId");
-    let input = [...listData];
-    let index = input.findIndex((ele) => ele.id === Id);
-    let current = { ...input[index] };
-    let Task = [...current.task];
+  // function DropHandler(e) {
+  //   let DropId = e.dataTransfer.getData("text/plain");
+  //   const originalListId = e.dataTransfer.getData("text/listId");
+  //   let input = [...listData];
+  //   let index = input.findIndex((ele) => ele.id === Id);
+  //   let current = { ...input[index] };
+  //   let Task = [...current.task];
 
-    console.log(listData);
+  //   console.log(listData);
 
-    //dragged Card
-    let Index2 = input.findIndex((ele) => ele.id === originalListId);
-    let current2 = { ...input[Index2] };
-    let Task2 = [...current2.task];
-    let TaskIndex2 = Task2.findIndex((ele) => ele.id === DropId);
-    Task.push(Task2[TaskIndex2]);
-    Task2.splice(TaskIndex2, 1);
+  //   //dragged Card
+  //   let Index2 = input.findIndex((ele) => ele.id === originalListId);
+  //   let current2 = { ...input[Index2] };
+  //   let Task2 = [...current2.task];
+  //   let TaskIndex2 = Task2.findIndex((ele) => ele.id === DropId);
+  //   Task.push(Task2[TaskIndex2]);
+  //   Task2.splice(TaskIndex2, 1);
 
-    current.task = Task;
-    input[index] = current;
+  //   current.task = Task;
+  //   input[index] = current;
 
-    current2.task = Task2;
-    input[Index2] = current2;
+  //   current2.task = Task2;
+  //   input[Index2] = current2;
 
-    setListData(input);
-    localStorage.setItem('Card', JSON.stringify(input));
-    
-  }
+  //   setListData(input);
+  //   localStorage.setItem('Card', JSON.stringify(input));
+
+  // }
 
   return (
-    <div
-      onDragOver={dragOverHandler}
-      onDrop={(e) => DropHandler(e)}
-      ref={taskRef}
-    >
+    <div>
       <div className={Styles.TaskBoundary}>
         {task && task.length > 0
-          ? task.map((val) => (
-              <div
-                className={Styles.List}
-                key={val.id}
-                draggable
-                onDragStart={(e) => onDragStart(e, val.id)}
-              >
-                <ListEdit title={val.title} id={val.id} cardId={Id} />
-              </div>
+          ? task.map((ele, index) => (
+              <Draggable key={ele.id} draggableId={ele.id} index={index}>
+                {(provided) => {
+                  return (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className={Styles.List}
+                      key={ele.id}
+                    >
+                      <ListEdit title={ele.title} id={ele.id} cardId={Id} />
+                    </div>
+                  );
+                }}
+              </Draggable>
             ))
           : null}
       </div>

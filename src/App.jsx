@@ -23,7 +23,6 @@ function App() {
   }, [setImage]);
 
   function handleOnDragEnd(result){
-    console.log(result);
     const {source, destination} = result;
     if(!destination){
       return;

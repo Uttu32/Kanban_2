@@ -45,6 +45,7 @@ function App() {
         return ele;
       })
       setListData(UpdatedList);
+      localStorage.setItem('Card', JSON.stringify(UpdatedList))
     }
     else{
       const [sourceCard] = listData.filter((ele)=> ele.id === source.droppableId);
@@ -58,15 +59,13 @@ function App() {
         return ele;
       })
       setListData(UpdatedList);
-    }
+      localStorage.setItem('Card', JSON.stringify(UpdatedList))
+    }    
   }
 
 
 
   return (
-    // <div>
-    //   <Task />
-    // </div>
     <div>
       {/* Roting added */}
       <MainNavbar />

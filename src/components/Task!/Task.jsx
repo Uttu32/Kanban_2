@@ -82,63 +82,12 @@ const Task = (props) => {
   // }
 
   function handleChange(e) {
-    setTitle(e.target.eleue);
+    setTitle(e.target.value);
   }
 
   function handleAddButton() {
     setAddItem(!addItem);
   }
-
-  // function handleEdit(ID) {
-  //   let input = [...listData];
-  //   let index = input.findIndex((ele) => ele.id === Id);
-  //   let current = input[index];
-  //   let taskss = { ...current };
-  //   let Task = [...taskss.task];
-  //   let taskIndex = Task.findIndex((ele) => ele.id === ID);
-  //   console.log(Task[taskIndex]);
-  // }
-
-  //DRAGANDDROP===============================================================================================================
-
-  // function onDragStart(e, id) {
-  //   e.dataTransfer.setData("text/plain", id);
-  //   e.dataTransfer.setData("text/listId", Id);
-  //   // console.log(listId)
-  // }
-
-  // function dragOverHandler(e) {
-  //   e.preventDefault();
-  // }
-
-  // function DropHandler(e) {
-  //   let DropId = e.dataTransfer.getData("text/plain");
-  //   const originalListId = e.dataTransfer.getData("text/listId");
-  //   let input = [...listData];
-  //   let index = input.findIndex((ele) => ele.id === Id);
-  //   let current = { ...input[index] };
-  //   let Task = [...current.task];
-
-  //   console.log(listData);
-
-  //   //dragged Card
-  //   let Index2 = input.findIndex((ele) => ele.id === originalListId);
-  //   let current2 = { ...input[Index2] };
-  //   let Task2 = [...current2.task];
-  //   let TaskIndex2 = Task2.findIndex((ele) => ele.id === DropId);
-  //   Task.push(Task2[TaskIndex2]);
-  //   Task2.splice(TaskIndex2, 1);
-
-  //   current.task = Task;
-  //   input[index] = current;
-
-  //   current2.task = Task2;
-  //   input[Index2] = current2;
-
-  //   setListData(input);
-  //   localStorage.setItem('Card', JSON.stringify(input));
-
-  // }
 
   return (
     <div>

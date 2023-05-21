@@ -76,8 +76,6 @@ export default function ItemBox() {
   }
   
   function handleCommentSubmit() {
-        let cmd
-
         setShowComment(false)
         setComment('')
     }

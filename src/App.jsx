@@ -66,9 +66,10 @@ function App() {
 
 
   return (
-    <div>
+    <div style={{height:"100vh", position:'relative'}}>
       {/* Roting added */}
-      <MainNavbar />
+      {/* <MainNavbar /> */}
+      <Navbar />
 
       <div
         className="Main_Background"
@@ -77,7 +78,7 @@ function App() {
         {/* <Sidebar /> */}
 
         <div className="mainContent">
-          <Navbar />
+          
           <DragDropContext onDragEnd={(result)=> handleOnDragEnd(result)}>
             <div className="inner">
               <List />

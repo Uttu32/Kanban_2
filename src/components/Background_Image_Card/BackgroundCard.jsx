@@ -15,15 +15,19 @@ export default function BackgroundCard() {
         localStorage.setItem('Image', JSON.stringify(index));
         navigate("/")
     }
+
+
   return (
     <div className={Styles.Main}>
       <h2>Optimise your view</h2>
       <div className={Styles.image}>
+
         {Bcg_Image.map((ele,index) => (
           <img key={index}
           onClick={()=>handleCLick(index)}
           src={ele} alt="image" />
         ))}
+
       </div>
     </div>
   );
